@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>웹소켓 채팅</title>
+    <script>
+        /*
+           웹소켓 서버 생성 확인 및
+           메세지 수신 정상적인지 확인을 위함
+        */
+        const ws = new WebSocket('ws://localhost:8001')
+     
+        function receiveMessage(event){
+            const messageDiv = document.createElement('div')
+            const message = document.createTextNode(event.data)
+            messageDiv.appendChild(message)
+
+            const chatlogDiv = document.getElementById('chat-log')
+            chatlogDiv.appendChild(messageDiv)
+        }
+
+        ws.onmessage = receiveMessage
+
+    </script>
+  </head>
+  <body>
+    <h1>채팅방</h1>
+    <div>
+        <input type="text" id="name" placeholder="이름">
+        <input type="text" id="message" placeholder="내용">
+        <button type="button">보내기</button>
+    </div>
+    <div id="chat-log"></div>
+</body>
+</html>
