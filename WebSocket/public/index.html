@@ -20,6 +20,7 @@
 
         ws.onmessage = receiveMessage
 
+        // 내용 input 공백으로 전환
         function clearInput(){
             document.getElementById('message').value = ""
         }
@@ -33,7 +34,7 @@
 
             // 서버로 전송
             ws.send(fullMessage)
-            clearInput()
+            clearInput() 
         }
     </script>
   </head>
