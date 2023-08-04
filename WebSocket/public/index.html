@@ -20,15 +20,20 @@
 
         ws.onmessage = receiveMessage
 
+        function clearInput(){
+            document.getElementById('message').value = ""
+        }
+
         // 채팅 기능
-        // 1. 클라이언트에서 서버로 메세지 보내기
+        // 클라이언트에서 서버로 메세지를 보내주면 -> 서버가 클라이언트들에게 뿌려줌
         function sendMessage() {
-            const name = document.getElementById('name')
-            const message = document.getElementById('message')
+            const name = document.getElementById('name').value
+            const message = document.getElementById('message').value
             const fullMessage = `${name}님: ${message}`
 
             // 서버로 전송
             ws.send(fullMessage)
+            clearInput()
         }
     </script>
   </head>
