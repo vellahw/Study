@@ -8,13 +8,13 @@
         // 웹소켓 서버 생성
         const ws = new WebSocket('ws://localhost:8001')
      
-        // 유저 접속 확인 로그 출력 이벤트
+        // 유저 접속 확인 로그 출력 함수
         function receiveMessage(event){
             const messageDiv = document.createElement('div')
             const message = document.createTextNode(event.data)
             messageDiv.appendChild(message)
 
-            const chatlogDiv = document.getElementById('chat-log')
+            const chatlogDiv = document.getElementById('msgLogDiv')
             chatlogDiv.appendChild(messageDiv)
         }
 
@@ -32,9 +32,8 @@
             const message = document.getElementById('message').value
             const fullMessage = `${name}님: ${message}`
 
-            // 서버로 전송
-            ws.send(fullMessage)
-            clearInput() 
+            ws.send(fullMessage) // 서버로 전송
+            clearInput() // 공백처리
         }
     </script>
   </head>
@@ -45,6 +44,6 @@
         <input type="text" id="message" placeholder="내용">
         <button type="button" onclick="sendMessage()">보내기</button>
     </div>
-    <div id="chat-log"></div>
+    <div id="msgLogDiv"></div>
 </body>
 </html>
